@@ -91,7 +91,7 @@ const Index = () => {
               <img 
                 src="https://cdn.poehali.dev/files/ae770840-ab42-4f33-a329-78e91c2c1460.png" 
                 alt="code5.ru" 
-                className="h-8 w-auto"
+                className="h-10 w-auto"
               />
               <div className="hidden md:flex items-center gap-6">
                 {['Главная', 'Начать играть', 'Форумы', 'Сообщество', 'Департаменты'].map((item) => (
