@@ -39,11 +39,11 @@ const Auth = () => {
       </div>
 
       <div className="w-full max-w-md relative z-10">
-        <div className="text-center mb-8">
+        <div className="text-center mb-10">
           <img 
             src="https://cdn.poehali.dev/files/ae770840-ab42-4f33-a329-78e91c2c1460.png" 
             alt="code5.ru" 
-            className="h-24 w-auto mx-auto mb-6"
+            className="h-32 w-auto mx-auto mb-8"
           />
           <h1 className="text-3xl font-bold mb-2">Добро пожаловать</h1>
           <p className="text-muted-foreground">Войдите или создайте аккаунт</p>
