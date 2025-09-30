@@ -189,41 +189,46 @@ const Index = () => {
               <div className="space-y-6">
                 <h3 className="text-3xl font-bold">Концепция сообщества</h3>
                 
-                <div className="space-y-6">
-                  <div className="flex items-start gap-8">
-                    <div className="flex-1 text-center">
-                      <h5 className="font-bold mb-2">Гражданские</h5>
+                <div className="space-y-8">
+                  <div className="flex items-center gap-6 justify-center">
+                    <div className="text-center">
+                      <h5 className="font-bold text-xl mb-2">Гражданские</h5>
                       <p className="text-sm text-muted-foreground">Придумывают ситуации</p>
                     </div>
-                    <div className="text-2xl text-muted-foreground self-center">/</div>
-                    <div className="flex-1 text-center">
-                      <h5 className="font-bold mb-2">Государственные службы</h5>
+                    <div className="text-3xl text-muted-foreground">/</div>
+                    <div className="text-center">
+                      <h5 className="font-bold text-xl mb-2">Государственные службы</h5>
                       <p className="text-sm text-muted-foreground">Разрешают созданные ситуации</p>
                     </div>
                   </div>
 
-                  <p className="text-foreground/90 text-center">
+                  <p className="text-foreground/90">
                     Вы можете начать в любом из доступных департаментов, и поменять его в дальнейшем:
                   </p>
 
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                     <div>
-                      <h6 className="font-bold mb-1">Гражданский Департамент</h6>
+                      <h6 className="font-bold text-lg mb-1">Гражданский Департамент</h6>
                       <p className="text-sm text-muted-foreground">Создают проблемы</p>
                     </div>
                     <div>
-                      <h6 className="font-bold mb-1">Дорожный Патруль Сан Андреас</h6>
-                      <p className="text-sm text-muted-foreground">Полицейский Департамент Лос-Сантоса</p>
+                      <h6 className="font-bold text-lg mb-1">Дорожный Патруль Сан Андреас</h6>
+                      <p className="text-sm text-muted-foreground mb-1">Полицейский Департамент Лос-Сантоса</p>
                       <p className="text-sm text-muted-foreground">Следят за порядком</p>
                     </div>
                     <div>
-                      <h6 className="font-bold mb-1">Пожарный департамент Лос-Сантоса</h6>
+                      <h6 className="font-bold text-lg mb-1">Пожарный департамент Лос-Сантоса</h6>
                       <p className="text-sm text-muted-foreground">Спасают людей</p>
                     </div>
                     <div>
-                      <h6 className="font-bold mb-1">Департамент транспорта</h6>
+                      <h6 className="font-bold text-lg mb-1">Департамент транспорта</h6>
                       <p className="text-sm text-muted-foreground">Организовывают движение</p>
                     </div>
+                  </div>
+
+                  <div className="text-center pt-4">
+                    <h6 className="font-bold text-lg mb-1">Диспетчерский Департамент</h6>
+                    <p className="text-sm text-muted-foreground">Контролируют ситуацию</p>
                   </div>
                 </div>
               </div>
