@@ -163,7 +163,7 @@ const Index = () => {
           <div className="container mx-auto relative z-10">
             <div className="max-w-4xl mx-auto text-center space-y-6 animate-fade-in">
               <h2 className="text-4xl md:text-6xl font-bold leading-tight">
-                Станьте <span className="text-primary transition-all duration-300">{words[currentWord]}</span> в Америке
+                Станьте <span className="text-primary transition-all duration-500 inline-block animate-fade-in" key={currentWord}>{words[currentWord]}</span> в Америке
               </h2>
               <div className="flex items-center justify-center gap-4 pt-4">
                 <Button size="lg" className="gradient-blue text-lg px-8 hover:scale-105 transition-transform" onClick={() => setApplicationOpen(true)}>
