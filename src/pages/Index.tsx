@@ -3,12 +3,27 @@ import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { Textarea } from '@/components/ui/textarea';
 import Icon from '@/components/ui/icon';
 import { useNavigate } from 'react-router-dom';
 
 const Index = () => {
   const navigate = useNavigate();
   const [activeSection, setActiveSection] = useState('main');
+  const [applicationOpen, setApplicationOpen] = useState(false);
+  const [currentStep, setCurrentStep] = useState(1);
+  const [formData, setFormData] = useState({
+    name: '',
+    age: '',
+    discord: '',
+    timezone: '',
+    experience: '',
+    whyJoin: '',
+    rules: false
+  });
 
   const factions = [
     {
@@ -87,9 +102,10 @@ const Index = () => {
                 className="h-12 w-auto"
               />
               <div className="hidden md:flex items-center gap-6">
-                {['Главная', 'Начать играть', 'Форумы', 'Сообщество', 'Департаменты'].map((item) => (
+                {['Главная', 'Подать заявку', 'Форумы', 'Сообщество', 'Департаменты'].map((item) => (
                   <button
                     key={item}
+                    onClick={() => item === 'Подать заявку' && setApplicationOpen(true)}
                     className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors relative group"
                   >
                     {item}
@@ -132,25 +148,16 @@ const Index = () => {
                 code5.ru - это сообщество в GTA 5. Проект, созданный в 2024 году, является крупнейшим Role Play проектом высокого уровня.
               </p>
               <div className="flex items-center justify-center gap-4 pt-4">
-                <Button size="lg" className="gradient-blue text-lg px-8 hover:scale-105 transition-transform">
-                  <Icon name="Play" size={20} className="mr-2" />
-                  Начать играть
+                <Button size="lg" className="gradient-blue text-lg px-8 hover:scale-105 transition-transform" onClick={() => setApplicationOpen(true)}>
+                  <Icon name="FileText" size={20} className="mr-2" />
+                  Подать заявку
                 </Button>
                 <Button size="lg" variant="outline" className="text-lg px-8">
                   <Icon name="Info" size={20} className="mr-2" />
                   Подробнее
                 </Button>
               </div>
-              <div className="flex items-center justify-center gap-8 pt-8 text-sm">
-                <div className="flex items-center gap-2">
-                  <Icon name="Users" size={18} className="text-primary" />
-                  <span><strong>2,453</strong> игроков онлайн</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Icon name="Trophy" size={18} className="text-accent" />
-                  <span><strong>15,890</strong> активных игроков</span>
-                </div>
-              </div>
+
             </div>
           </div>
         </section>
@@ -320,6 +327,167 @@ const Index = () => {
           </div>
         </div>
       </footer>
+
+      <Dialog open={applicationOpen} onOpenChange={setApplicationOpen}>
+        <DialogContent className="sm:max-w-[600px] glass-effect border-white/10">
+          <DialogHeader>
+            <DialogTitle className="text-2xl">Подать заявку</DialogTitle>
+            <DialogDescription>
+              <div className="flex items-center gap-2 text-sm text-muted-foreground mt-2">
+                <Icon name="Lock" size={14} />
+                Откроется после завершения предыдущих этапов.
+              </div>
+            </DialogDescription>
+          </DialogHeader>
+
+          <div className="space-y-6">
+            <div className="flex items-center gap-2 mb-6">
+              {[1, 2].map((step) => (
+                <div key={step} className="flex items-center gap-2 flex-1">
+                  <div className={`flex items-center justify-center w-8 h-8 rounded-full font-bold text-sm ${
+                    currentStep === step ? 'bg-primary text-primary-foreground' : 
+                    currentStep > step ? 'bg-green-500 text-white' : 'bg-secondary text-muted-foreground'
+                  }`}>
+                    {currentStep > step ? <Icon name="Check" size={16} /> : step}
+                  </div>
+                  {step < 2 && <div className={`h-0.5 flex-1 ${
+                    currentStep > step ? 'bg-green-500' : 'bg-secondary'
+                  }`} />}
+                </div>
+              ))}
+            </div>
+
+            <div className="text-sm text-muted-foreground mb-4">
+              Ответь на несколько вопросов <span className="text-foreground font-bold">[{currentStep}/2]</span>
+            </div>
+
+            {currentStep === 1 && (
+              <div className="space-y-4">
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="space-y-2">
+                    <Label htmlFor="name">Имя и фамилия *</Label>
+                    <Input 
+                      id="name" 
+                      placeholder="Введите имя и фамилию"
+                      value={formData.name}
+                      onChange={(e) => setFormData({...formData, name: e.target.value})}
+                      className="bg-secondary/50 border-white/10"
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="age">Возраст *</Label>
+                    <Input 
+                      id="age" 
+                      type="number"
+                      placeholder="Ваш возраст"
+                      value={formData.age}
+                      onChange={(e) => setFormData({...formData, age: e.target.value})}
+                      className="bg-secondary/50 border-white/10"
+                    />
+                  </div>
+                </div>
+
+                <div className="space-y-2">
+                  <Label htmlFor="discord">Discord никнейм *</Label>
+                  <Input 
+                    id="discord" 
+                    placeholder="example#1234"
+                    value={formData.discord}
+                    onChange={(e) => setFormData({...formData, discord: e.target.value})}
+                    className="bg-secondary/50 border-white/10"
+                  />
+                </div>
+
+                <div className="space-y-2">
+                  <Label htmlFor="timezone">Часовой пояс *</Label>
+                  <Input 
+                    id="timezone" 
+                    placeholder="Например: МСК (UTC+3)"
+                    value={formData.timezone}
+                    onChange={(e) => setFormData({...formData, timezone: e.target.value})}
+                    className="bg-secondary/50 border-white/10"
+                  />
+                </div>
+              </div>
+            )}
+
+            {currentStep === 2 && (
+              <div className="space-y-4">
+                <div className="space-y-2">
+                  <Label htmlFor="experience">Расскажи о своем опыте в RP *</Label>
+                  <Textarea 
+                    id="experience" 
+                    placeholder="Опишите ваш опыт игры на RP серверах..."
+                    value={formData.experience}
+                    onChange={(e) => setFormData({...formData, experience: e.target.value})}
+                    className="bg-secondary/50 border-white/10 min-h-[100px]"
+                  />
+                </div>
+
+                <div className="space-y-2">
+                  <Label htmlFor="whyJoin">Почему хочешь к нам? *</Label>
+                  <Textarea 
+                    id="whyJoin" 
+                    placeholder="Расскажите, что вас привлекло в нашем проекте..."
+                    value={formData.whyJoin}
+                    onChange={(e) => setFormData({...formData, whyJoin: e.target.value})}
+                    className="bg-secondary/50 border-white/10 min-h-[100px]"
+                  />
+                </div>
+
+                <div className="flex items-start gap-2">
+                  <input 
+                    type="checkbox" 
+                    id="rules"
+                    checked={formData.rules}
+                    onChange={(e) => setFormData({...formData, rules: e.target.checked})}
+                    className="mt-1"
+                  />
+                  <Label htmlFor="rules" className="text-sm cursor-pointer">
+                    Я ознакомился с правилами сервера и обязуюсь их соблюдать *
+                  </Label>
+                </div>
+              </div>
+            )}
+
+            <div className="flex items-center justify-between pt-4">
+              {currentStep > 1 && (
+                <Button 
+                  variant="outline" 
+                  onClick={() => setCurrentStep(currentStep - 1)}
+                >
+                  Назад
+                </Button>
+              )}
+              {currentStep < 2 ? (
+                <Button 
+                  className="gradient-blue ml-auto"
+                  onClick={() => setCurrentStep(2)}
+                  disabled={!formData.name || !formData.age || !formData.discord || !formData.timezone}
+                >
+                  Далее
+                </Button>
+              ) : (
+                <Button 
+                  className="gradient-blue ml-auto"
+                  onClick={() => {
+                    alert('Заявка отправлена! Ожидайте рассмотрения в течение 24 часов.');
+                    setApplicationOpen(false);
+                    setCurrentStep(1);
+                    setFormData({
+                      name: '', age: '', discord: '', timezone: '',
+                      experience: '', whyJoin: '', rules: false
+                    });
+                  }}
+                  disabled={!formData.experience || !formData.whyJoin || !formData.rules}
+                >
+                  Отправить заявку
+                </Button>
+              )}
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };
