@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -15,6 +15,30 @@ const Index = () => {
   const [activeSection, setActiveSection] = useState('main');
   const [applicationOpen, setApplicationOpen] = useState(false);
   const [currentStep, setCurrentStep] = useState(1);
+  const [currentWord, setCurrentWord] = useState(0);
+  
+  const words = [
+    'Собой',
+    'Копом',
+    'Эвакуаторщиком',
+    'Спасателем',
+    'Диспетчером',
+    'Котиком',
+    'Гангстером',
+    'Бандитом',
+    'Трупером',
+    'Уличным гонщиком',
+    'Пилотом вертолёта',
+    'Патрульным',
+    'Собакой К-9'
+  ];
+  
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentWord((prev) => (prev + 1) % words.length);
+    }, 1000);
+    return () => clearInterval(interval);
+  }, []);
   const [formData, setFormData] = useState({
     name: '',
     age: '',
@@ -138,28 +162,27 @@ const Index = () => {
           <div className="absolute inset-0 bg-black/60" />
           <div className="container mx-auto relative z-10">
             <div className="max-w-4xl mx-auto text-center space-y-6 animate-fade-in">
-              <Badge className="bg-primary/20 text-primary border-primary/30">
-                Сервер №1 в России
-              </Badge>
-              <h2 className="text-4xl md:text-5xl font-bold leading-tight">
-                О нас
+              <h2 className="text-4xl md:text-6xl font-bold leading-tight">
+                Станьте <span className="text-primary transition-all duration-300">{words[currentWord]}</span> в Америке
               </h2>
-              <p className="text-lg text-foreground/90 max-w-2xl mx-auto">
-                code5.ru - Это сообщество в GTA 5 на платформе FiveM. Проект был создан в 2024 году и имеет 2 игровых сервер с US-RU Сеттингов.
-              </p>
               <div className="flex items-center justify-center gap-4 pt-4">
                 <Button size="lg" className="gradient-blue text-lg px-8 hover:scale-105 transition-transform" onClick={() => setApplicationOpen(true)}>
                   <Icon name="FileText" size={20} className="mr-2" />
                   Подать заявку
                 </Button>
               </div>
-
             </div>
           </div>
         </section>
 
         <section className="py-16 px-4">
           <div className="container mx-auto max-w-6xl">
+            <div className="text-center mb-12">
+              <h3 className="text-3xl font-bold mb-3">О нас</h3>
+              <p className="text-lg text-foreground/90 max-w-2xl mx-auto">
+                code5.ru - Это сообщество в GTA 5 на платформе FiveM. Проект был создан в 2024 году и имеет 2 игровых сервер с US-RU Сеттингов.
+              </p>
+            </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
               <div className="space-y-6">
                 <h3 className="text-3xl font-bold">Преимущества</h3>
