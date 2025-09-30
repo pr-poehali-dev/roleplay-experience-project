@@ -13,7 +13,7 @@ const Index = () => {
   const factions = [
     {
       id: 1,
-      name: 'Полиция',
+      name: 'LSPD/LSSD',
       description: 'Защита правопорядка города',
       members: 142,
       rating: 4.8,
@@ -22,8 +22,8 @@ const Index = () => {
     },
     {
       id: 2,
-      name: 'Медики',
-      description: 'Спасение жизней граждан',
+      name: 'DPS',
+      description: 'Медицинская служба',
       members: 98,
       rating: 4.9,
       icon: 'Heart',
@@ -31,21 +31,12 @@ const Index = () => {
     },
     {
       id: 3,
-      name: 'Мафия',
-      description: 'Теневой бизнес и контроль',
+      name: 'Civil',
+      description: 'Гражданские организации',
       members: 156,
       rating: 4.7,
       icon: 'Users',
-      color: 'from-purple-500 to-purple-700'
-    },
-    {
-      id: 4,
-      name: 'Банда Grove',
-      description: 'Уличная банда района',
-      members: 89,
-      rating: 4.5,
-      icon: 'Flame',
-      color: 'from-green-500 to-green-700'
+      color: 'from-gray-400 to-gray-600'
     }
   ];
 
@@ -93,7 +84,7 @@ const Index = () => {
               <img 
                 src="https://cdn.poehali.dev/files/ae770840-ab42-4f33-a329-78e91c2c1460.png" 
                 alt="code5.ru" 
-                className="h-40 w-auto"
+                className="h-12 w-auto"
               />
               <div className="hidden md:flex items-center gap-6">
                 {['Главная', 'Начать играть', 'Форумы', 'Сообщество', 'Департаменты'].map((item) => (
@@ -120,22 +111,25 @@ const Index = () => {
       </nav>
 
       <main className="pt-20">
-        <section className="relative py-20 px-4 overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-background to-accent/20" />
+        <section className="relative py-16 px-4 overflow-hidden min-h-[500px]">
+          <iframe
+            className="absolute inset-0 w-full h-full object-cover opacity-30"
+            src="https://www.youtube.com/embed/EBP4GjKgXzk?autoplay=1&mute=1&loop=1&playlist=EBP4GjKgXzk&controls=0&showinfo=0&rel=0&modestbranding=1"
+            allow="autoplay; encrypted-media"
+            style={{ pointerEvents: 'none' }}
+            title="Background video"
+          />
+          <div className="absolute inset-0 bg-black/60" />
           <div className="container mx-auto relative z-10">
             <div className="max-w-4xl mx-auto text-center space-y-6 animate-fade-in">
               <Badge className="bg-primary/20 text-primary border-primary/30">
                 Сервер №1 в России
               </Badge>
-              <h2 className="text-5xl md:text-7xl font-bold leading-tight">
-                Твоя история
-                <span className="block bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent">
-                  начинается здесь
-                </span>
+              <h2 className="text-4xl md:text-5xl font-bold leading-tight">
+                О нас
               </h2>
-              <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-                Погрузись в мир RolePlay, где каждое твое действие имеет значение. 
-                Выбери свой путь и стань легендой!
+              <p className="text-lg text-foreground/90 max-w-2xl mx-auto">
+                code5.ru - это сообщество в GTA 5. Проект, созданный в 2024 году, является крупнейшим Role Play проектом высокого уровня.
               </p>
               <div className="flex items-center justify-center gap-4 pt-4">
                 <Button size="lg" className="gradient-blue text-lg px-8 hover:scale-105 transition-transform">
@@ -167,7 +161,7 @@ const Index = () => {
               <h3 className="text-3xl font-bold mb-3">Выбери свою фракцию</h3>
               <p className="text-muted-foreground">Присоединись к одной из организаций и начни свой путь</p>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {factions.map((faction, index) => (
                 <Card
                   key={faction.id}
