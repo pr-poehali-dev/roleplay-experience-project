@@ -159,123 +159,75 @@ const Index = () => {
         </section>
 
         <section className="py-16 px-4">
-          <div className="container mx-auto">
-            <div className="text-center mb-12 animate-slide-up">
-              <h3 className="text-3xl font-bold mb-3">Выбери свою фракцию</h3>
-              <p className="text-muted-foreground">Присоединись к одной из организаций и начни свой путь</p>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {factions.map((faction, index) => (
-                <Card
-                  key={faction.id}
-                  className="glass-effect border-white/10 p-6 group hover:border-primary/50 transition-all duration-300 hover:scale-105 cursor-pointer"
-                  style={{ animationDelay: `${index * 100}ms` }}
-                >
-                  <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${faction.color} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform`}>
-                    <Icon name={faction.icon as any} size={32} className="text-white" />
-                  </div>
-                  <h4 className="text-xl font-bold mb-2">{faction.name}</h4>
-                  <p className="text-sm text-muted-foreground mb-4">{faction.description}</p>
-                  <div className="flex items-center justify-between text-sm">
-                    <div className="flex items-center gap-1">
-                      <Icon name="Users" size={14} className="text-primary" />
-                      <span>{faction.members}</span>
-                    </div>
-                    <div className="flex items-center gap-1">
-                      <Icon name="Star" size={14} className="text-accent" />
-                      <span>{faction.rating}</span>
-                    </div>
-                  </div>
-                </Card>
-              ))}
-            </div>
-          </div>
-        </section>
+          <div className="container mx-auto max-w-6xl">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+              <div className="space-y-6">
+                <h3 className="text-3xl font-bold">Преимущества</h3>
+                <ol className="space-y-4 text-foreground/90">
+                  <li className="flex gap-3">
+                    <span className="font-bold shrink-0">1.</span>
+                    <span>Взрослая аудитория, несколько этапов отбора и фокус на голосовом взаимодействии в игре, в отличие от устаревшего SAMP;</span>
+                  </li>
+                  <li className="flex gap-3">
+                    <span className="font-bold shrink-0">2.</span>
+                    <span>У нас нет ограничивающих скриптов, работ и внутриигровой валюты, чтобы дать свободу воображению игроков для создания уникальных РП-ситуаций;</span>
+                  </li>
+                  <li className="flex gap-3">
+                    <span className="font-bold shrink-0">3.</span>
+                    <span>Мы считаем участников нашей самой большой ценностью, и каждый игрок является ключевым для развития сообщества.</span>
+                  </li>
+                </ol>
 
-        <section className="py-16 px-4 bg-secondary/30">
-          <div className="container mx-auto">
-            <Tabs defaultValue="events" className="w-full">
-              <div className="flex items-center justify-between mb-8">
-                <h3 className="text-3xl font-bold">Активность</h3>
-                <TabsList className="glass-effect border-white/10">
-                  <TabsTrigger value="events">События</TabsTrigger>
-                  <TabsTrigger value="rating">Рейтинг</TabsTrigger>
-                  <TabsTrigger value="map">Карта</TabsTrigger>
-                </TabsList>
+                <div className="pt-6 space-y-4">
+                  <h4 className="text-2xl font-bold">Уникальный функционал</h4>
+                  <p className="text-foreground/90">
+                    Для сообщества разработана продвинутая CAD/MDT-система «TERMINAL», не уступающая реальным полицейским компьютерам, и десятки других уникальных систем.
+                  </p>
+                </div>
               </div>
 
-              <TabsContent value="events" className="space-y-4">
-                {events.map((event) => (
-                  <Card key={event.id} className="glass-effect border-white/10 p-6 hover:border-primary/50 transition-all">
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-4">
-                        <div className="w-12 h-12 rounded-xl gradient-blue flex items-center justify-center">
-                          <Icon name={event.type === 'race' ? 'Zap' : event.type === 'war' ? 'Swords' : 'Trophy'} size={24} />
-                        </div>
-                        <div>
-                          <h4 className="font-bold text-lg">{event.title}</h4>
-                          <div className="flex items-center gap-4 text-sm text-muted-foreground mt-1">
-                            <span className="flex items-center gap-1">
-                              <Icon name="Clock" size={14} />
-                              {event.time}
-                            </span>
-                            <span className="flex items-center gap-1">
-                              <Icon name="Users" size={14} />
-                              {event.participants} участников
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="text-right">
-                        <Badge className="bg-accent/20 text-accent border-accent/30 mb-2">
-                          {event.prize}
-                        </Badge>
-                        <Button size="sm" className="gradient-blue">
-                          Участвовать
-                        </Button>
-                      </div>
+              <div className="space-y-6">
+                <h3 className="text-3xl font-bold">Концепция сообщества</h3>
+                
+                <div className="space-y-6">
+                  <div className="flex items-start gap-8">
+                    <div className="flex-1 text-center">
+                      <h5 className="font-bold mb-2">Гражданские</h5>
+                      <p className="text-sm text-muted-foreground">Придумывают ситуации</p>
                     </div>
-                  </Card>
-                ))}
-              </TabsContent>
-
-              <TabsContent value="rating">
-                <Card className="glass-effect border-white/10 p-6">
-                  <div className="space-y-4">
-                    {topPlayers.map((player, index) => (
-                      <div key={player.id} className="flex items-center justify-between p-4 rounded-xl hover:bg-white/5 transition-colors">
-                        <div className="flex items-center gap-4">
-                          <div className={`w-10 h-10 rounded-full flex items-center justify-center font-bold ${
-                            index === 0 ? 'bg-yellow-500' : index === 1 ? 'bg-gray-400' : index === 2 ? 'bg-orange-600' : 'bg-secondary'
-                          }`}>
-                            {index + 1}
-                          </div>
-                          <div>
-                            <div className="font-bold">{player.name}</div>
-                            <div className="text-sm text-muted-foreground">Уровень {player.level}</div>
-                          </div>
-                        </div>
-                        <div className="text-right">
-                          <div className="font-bold text-primary">{player.score.toLocaleString()}</div>
-                          <div className="text-xs text-muted-foreground">очков</div>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </Card>
-              </TabsContent>
-
-              <TabsContent value="map">
-                <Card className="glass-effect border-white/10 p-6">
-                  <div className="aspect-video bg-gradient-to-br from-secondary to-background rounded-xl flex items-center justify-center">
-                    <div className="text-center space-y-2">
-                      <Icon name="Map" size={64} className="mx-auto text-muted-foreground" />
-                      <p className="text-muted-foreground">Интерактивная карта сервера</p>
+                    <div className="text-2xl text-muted-foreground self-center">/</div>
+                    <div className="flex-1 text-center">
+                      <h5 className="font-bold mb-2">Государственные службы</h5>
+                      <p className="text-sm text-muted-foreground">Разрешают созданные ситуации</p>
                     </div>
                   </div>
-                </Card>
-              </TabsContent>
-            </Tabs>
+
+                  <p className="text-foreground/90 text-center">
+                    Вы можете начать в любом из доступных департаментов, и поменять его в дальнейшем:
+                  </p>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                      <h6 className="font-bold mb-1">Гражданский Департамент</h6>
+                      <p className="text-sm text-muted-foreground">Создают проблемы</p>
+                    </div>
+                    <div>
+                      <h6 className="font-bold mb-1">Дорожный Патруль Сан Андреас</h6>
+                      <p className="text-sm text-muted-foreground">Полицейский Департамент Лос-Сантоса</p>
+                      <p className="text-sm text-muted-foreground">Следят за порядком</p>
+                    </div>
+                    <div>
+                      <h6 className="font-bold mb-1">Пожарный департамент Лос-Сантоса</h6>
+                      <p className="text-sm text-muted-foreground">Спасают людей</p>
+                    </div>
+                    <div>
+                      <h6 className="font-bold mb-1">Департамент транспорта</h6>
+                      <p className="text-sm text-muted-foreground">Организовывают движение</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </section>
 
