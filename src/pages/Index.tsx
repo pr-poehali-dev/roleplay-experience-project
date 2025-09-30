@@ -88,9 +88,11 @@ const Index = () => {
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-8">
-              <h1 className="text-2xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-                ROLEPLAY
-              </h1>
+              <img 
+                src="https://cdn.poehali.dev/files/ae770840-ab42-4f33-a329-78e91c2c1460.png" 
+                alt="code5.ru" 
+                className="h-8 w-auto"
+              />
               <div className="hidden md:flex items-center gap-6">
                 {['Главная', 'Начать играть', 'Форумы', 'Сообщество', 'Департаменты'].map((item) => (
                   <button
@@ -311,7 +313,7 @@ const Index = () => {
         <div className="container mx-auto">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <div className="text-sm text-muted-foreground">
-              © 2025 RolePlay Project. Все права защищены.
+              © 2025 code5.ru. Все права защищены.
             </div>
             <div className="flex items-center gap-6">
               <a href="#" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Правила</a>
