@@ -152,10 +152,6 @@ const Index = () => {
                   <Icon name="FileText" size={20} className="mr-2" />
                   Подать заявку
                 </Button>
-                <Button size="lg" variant="outline" className="text-lg px-8">
-                  <Icon name="Info" size={20} className="mr-2" />
-                  Подробнее
-                </Button>
               </div>
 
             </div>
