@@ -145,7 +145,7 @@ const Index = () => {
                 О нас
               </h2>
               <p className="text-lg text-foreground/90 max-w-2xl mx-auto">
-                code5.ru - это сообщество в GTA 5. Проект, созданный в 2024 году, является крупнейшим Role Play проектом высокого уровня.
+                code5.ru - Это сообщество в GTA 5 на платформе FiveM. Проект был создан в 2024 году и имеет 2 игровых сервер с US-RU Сеттингов.
               </p>
               <div className="flex items-center justify-center gap-4 pt-4">
                 <Button size="lg" className="gradient-blue text-lg px-8 hover:scale-105 transition-transform" onClick={() => setApplicationOpen(true)}>
