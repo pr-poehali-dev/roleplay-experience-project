@@ -4,8 +4,10 @@ import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import Icon from '@/components/ui/icon';
+import { useNavigate } from 'react-router-dom';
 
 const Index = () => {
+  const navigate = useNavigate();
   const [activeSection, setActiveSection] = useState('main');
 
   const factions = [
@@ -109,7 +111,7 @@ const Index = () => {
               <Button variant="ghost" size="sm">
                 <Icon name="Search" size={18} />
               </Button>
-              <Button size="sm" className="gradient-blue">
+              <Button size="sm" className="gradient-blue" onClick={() => navigate('/auth')}>
                 Войти
               </Button>
             </div>
