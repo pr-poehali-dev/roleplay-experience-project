@@ -15,6 +15,7 @@ interface User {
   avatar?: string;
   steamConnected: boolean;
   applicationCompleted: boolean;
+  applicationApproved: boolean;
 }
 
 const Index = () => {
@@ -29,6 +30,7 @@ const Index = () => {
   const [profileOpen, setProfileOpen] = useState(false);
   const [steamOpen, setSteamOpen] = useState(false);
   const [questionnaireOpen, setQuestionnaireOpen] = useState(false);
+  const [discordInviteOpen, setDiscordInviteOpen] = useState(false);
   
   const [authForm, setAuthForm] = useState({ email: '', password: '', username: '' });
   const [avatarFile, setAvatarFile] = useState<File | null>(null);
@@ -86,7 +88,8 @@ const Index = () => {
         email: authForm.email,
         username: authForm.username,
         steamConnected: false,
-        applicationCompleted: false
+        applicationCompleted: false,
+        applicationApproved: false
       };
       saveUser(newUser);
       setAuthOpen(false);
@@ -122,10 +125,24 @@ const Index = () => {
   const handleQuestionnaireSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (questionnaire.q1 && questionnaire.q2 && questionnaire.q3 && questionnaire.q4 && user) {
-      const updatedUser = { ...user, applicationCompleted: true };
+      const updatedUser = { ...user, applicationCompleted: true, applicationApproved: false };
       saveUser(updatedUser);
       setQuestionnaireOpen(false);
       alert('Заявка успешно отправлена! Ожидайте рассмотрения.');
+    }
+  };
+
+  const handlePlayClick = () => {
+    if (user?.applicationApproved) {
+      setDiscordInviteOpen(true);
+    }
+  };
+
+  const simulateApproval = () => {
+    if (user) {
+      const updatedUser = { ...user, applicationApproved: true };
+      saveUser(updatedUser);
+      alert('Поздравляем! Ваша заявка одобрена!');
     }
   };
 
@@ -144,7 +161,7 @@ const Index = () => {
     if (step === 1) return false;
     if (step === 2) return !user;
     if (step === 3) return !user.steamConnected;
-    if (step === 4) return !user.steamConnected;
+    if (step === 4) return !user.applicationApproved;
     return false;
   };
 
@@ -396,16 +413,20 @@ const Index = () => {
                       {user?.applicationCompleted && <Icon name="Check" size={16} className="ml-auto text-primary" />}
                     </div>
                     <div
+                      onClick={handlePlayClick}
                       className={`flex items-center gap-3 p-3 rounded-lg transition-colors ${
                         isStepDisabled(4)
                           ? 'bg-card/30 opacity-50 cursor-not-allowed'
+                          : user?.applicationApproved
+                          ? 'bg-card/50 hover:bg-lime-500/20 cursor-pointer'
                           : 'bg-card/50 hover:bg-card cursor-pointer'
                       }`}
                     >
-                      <div className={`w-8 h-8 rounded-full flex items-center justify-center ${user?.applicationCompleted ? 'bg-primary/40' : 'bg-primary/20'}`}>
+                      <div className={`w-8 h-8 rounded-full flex items-center justify-center ${user?.applicationApproved ? 'bg-lime-500/40' : 'bg-primary/20'}`}>
                         <Icon name="Play" size={16} />
                       </div>
                       <span className="text-sm">Начинай играть</span>
+                      {user?.applicationApproved && <Icon name="Check" size={16} className="ml-auto text-lime-500" />}
                     </div>
                   </div>
                 </div>
@@ -424,6 +445,22 @@ const Index = () => {
                   <Button onClick={() => setQuestionnaireOpen(true)} className="w-full gradient-blue">
                     Начать заполнение анкеты
                   </Button>
+                )}
+                {user?.applicationCompleted && !user.applicationApproved && (
+                  <div className="p-4 bg-yellow-500/10 border border-yellow-500/20 rounded-lg">
+                    <p className="text-sm text-yellow-500">Ваша заявка на рассмотрении...</p>
+                    <Button onClick={simulateApproval} className="w-full mt-2" variant="outline">
+                      [Тест] Одобрить заявку
+                    </Button>
+                  </div>
+                )}
+                {user?.applicationApproved && (
+                  <div className="p-4 bg-lime-500/10 border border-lime-500/20 rounded-lg">
+                    <p className="text-sm text-lime-500 flex items-center gap-2">
+                      <Icon name="CheckCircle" size={16} />
+                      Заявка одобрена! Можете начинать играть.
+                    </p>
+                  </div>
                 )}
               </div>
             </div>
@@ -634,6 +671,33 @@ const Index = () => {
               Отправить заявку
             </Button>
           </form>
+        </DialogContent>
+      </Dialog>
+
+      <Dialog open={discordInviteOpen} onOpenChange={setDiscordInviteOpen}>
+        <DialogContent className="bg-card border-white/10">
+          <DialogHeader>
+            <DialogTitle className="flex items-center gap-2">
+              <Icon name="MessageCircle" size={24} className="text-[#5865F2]" />
+              Присоединяйся к Discord!
+            </DialogTitle>
+          </DialogHeader>
+          <div className="space-y-4">
+            <p className="text-muted-foreground">
+              Поздравляем! Ваша заявка одобрена. Присоединяйтесь к нашему Discord серверу, чтобы начать играть.
+            </p>
+            <a
+              href="https://discord.gg/2PzgRW8AU4"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block"
+            >
+              <Button className="w-full bg-[#5865F2] hover:bg-[#4752C4] text-white">
+                <Icon name="ExternalLink" size={16} className="mr-2" />
+                Открыть приглашение Discord
+              </Button>
+            </a>
+          </div>
         </DialogContent>
       </Dialog>
     </div>
