@@ -24,6 +24,24 @@ const Forum = () => {
   const [hoveredDepartments, setHoveredDepartments] = useState(false);
   const [hoveredFiles, setHoveredFiles] = useState(false);
 
+  const onlineUsers = [
+    { id: 1, name: 'Nikita C.', rank: '#422' },
+    { id: 2, name: 'Emil G.', rank: '#755' },
+    { id: 3, name: 'Ardon I.', rank: '#31' },
+    { id: 4, name: 'Derek K.', rank: '#88' },
+    { id: 5, name: 'Yaroslav T.', rank: '#508' },
+    { id: 6, name: 'Andrey K.', rank: '#49' },
+    { id: 7, name: 'Aleksandr T.', rank: '#862' },
+    { id: 8, name: 'Andrey K.', rank: '#252' },
+    { id: 9, name: 'Andrey K.', rank: '#253' },
+    { id: 10, name: 'Nikita T.', rank: '#912' },
+    { id: 11, name: 'Kirill B.', rank: '#425' },
+    { id: 12, name: 'Maksim E.', rank: '#849' },
+    { id: 13, name: 'Artem C.', rank: '#10' },
+    { id: 14, name: 'Adam I.', rank: '#9' },
+    { id: 15, name: 'Kamikot', rank: '' }
+  ];
+
   const categories: ForumCategory[] = [
     {
       id: 1,
@@ -82,7 +100,11 @@ const Forum = () => {
                     <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all group-hover:w-full" />
                   </button>
                   {hoveredCommunity && (
-                    <div className="absolute top-full left-0 mt-2 w-56 bg-card border border-white/10 rounded-lg shadow-lg overflow-hidden">
+                    <div 
+                      className="absolute top-full left-0 mt-2 w-56 bg-card border border-white/10 rounded-lg shadow-lg overflow-hidden"
+                      onMouseEnter={() => setHoveredCommunity(true)}
+                      onMouseLeave={() => setHoveredCommunity(false)}
+                    >
                       <a href="#" className="block px-4 py-3 hover:bg-primary/10 transition-colors text-sm">
                         База знаний
                       </a>
@@ -102,7 +124,11 @@ const Forum = () => {
                           <Icon name="ChevronRight" size={16} />
                         </a>
                         {hoveredFiles && (
-                          <div className="absolute left-full top-0 ml-1 w-56 bg-card border border-white/10 rounded-lg shadow-lg overflow-hidden">
+                          <div 
+                            className="absolute left-full top-0 ml-1 w-56 bg-card border border-white/10 rounded-lg shadow-lg overflow-hidden"
+                            onMouseEnter={() => setHoveredFiles(true)}
+                            onMouseLeave={() => setHoveredFiles(false)}
+                          >
                             <a href="#" className="block px-4 py-3 hover:bg-primary/10 transition-colors text-sm">
                               Графические модификации
                             </a>
@@ -126,7 +152,11 @@ const Forum = () => {
                     <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all group-hover:w-full" />
                   </button>
                   {hoveredDepartments && (
-                    <div className="absolute top-full left-0 mt-2 w-72 bg-card border border-white/10 rounded-lg shadow-lg overflow-hidden">
+                    <div 
+                      className="absolute top-full left-0 mt-2 w-72 bg-card border border-white/10 rounded-lg shadow-lg overflow-hidden"
+                      onMouseEnter={() => setHoveredDepartments(true)}
+                      onMouseLeave={() => setHoveredDepartments(false)}
+                    >
                       <a href="#" className="block px-4 py-3 hover:bg-primary/10 transition-colors text-sm">
                         Дорожный Патруль Сан Андреас (SAHP)
                       </a>
@@ -258,17 +288,30 @@ const Forum = () => {
               </div>
 
               <Card className="glass-effect border-white/10 p-6">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <h3 className="font-bold mb-2">Кто в онлайне</h3>
-                    <p className="text-sm text-muted-foreground">
-                      15 пользователей, 0 анонимных, 13 гостей
-                    </p>
+                <div className="space-y-4">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <h3 className="font-bold mb-2">Кто в онлайне</h3>
+                      <p className="text-sm text-muted-foreground">
+                        15 пользователей, 0 анонимных, 13 гостей
+                      </p>
+                    </div>
+                    <Button variant="ghost" size="sm">
+                      <Icon name="Users" size={16} className="mr-2" />
+                      Посмотреть всех
+                    </Button>
                   </div>
-                  <Button variant="ghost" size="sm">
-                    <Icon name="Users" size={16} className="mr-2" />
-                    Посмотреть всех
-                  </Button>
+                  <div className="flex flex-wrap gap-2">
+                    {onlineUsers.map((user) => (
+                      <a
+                        key={user.id}
+                        href="#"
+                        className="text-sm text-primary hover:underline"
+                      >
+                        {user.name} {user.rank}
+                      </a>
+                    ))}
+                  </div>
                 </div>
               </Card>
             </div>
