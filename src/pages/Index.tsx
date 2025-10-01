@@ -254,30 +254,65 @@ const Index = () => {
           </div>
         </section>
 
-        <section className="py-16 px-4">
-          <div className="container mx-auto">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              <Card className="glass-effect border-white/10 p-8 text-center group hover:border-primary/50 transition-all">
-                <div className="w-16 h-16 rounded-full gradient-blue mx-auto mb-4 flex items-center justify-center group-hover:scale-110 transition-transform">
-                  <Icon name="Gamepad2" size={32} />
+        <section className="py-16 px-4 bg-black/40">
+          <div className="container mx-auto max-w-6xl">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+              <div className="space-y-6">
+                <div className="flex items-center gap-4 mb-8">
+                  <div className="w-20 h-20 bg-card rounded flex items-center justify-center text-4xl font-bold text-muted-foreground">
+                    ?
+                  </div>
+                  <div>
+                    <h3 className="text-2xl font-bold mb-1">Ваш аккаунт</h3>
+                    <p className="text-sm text-muted-foreground">Гость</p>
+                    <button className="text-sm text-primary hover:underline mt-1 flex items-center gap-1">
+                      <Icon name="LogIn" size={14} />
+                      Войди, чтобы подать заявку
+                    </button>
+                  </div>
                 </div>
-                <h4 className="text-xl font-bold mb-2">Игровой процесс</h4>
-                <p className="text-muted-foreground">Реалистичная механика и сюжетные линии</p>
-              </Card>
-              <Card className="glass-effect border-white/10 p-8 text-center group hover:border-accent/50 transition-all">
-                <div className="w-16 h-16 rounded-full bg-gradient-to-br from-accent to-accent/50 mx-auto mb-4 flex items-center justify-center group-hover:scale-110 transition-transform">
-                  <Icon name="Users" size={32} />
+
+                <div className="space-y-4">
+                  <h4 className="text-xl font-bold">Как начать играть?</h4>
+                  <div className="space-y-3">
+                    <div className="flex items-center gap-3 p-3 rounded-lg bg-card/50 hover:bg-card transition-colors cursor-pointer">
+                      <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center">
+                        <Icon name="User" size={16} />
+                      </div>
+                      <span className="text-sm">Войди в аккаунт</span>
+                    </div>
+                    <div className="flex items-center gap-3 p-3 rounded-lg bg-card/50 hover:bg-card transition-colors cursor-pointer">
+                      <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center">
+                        <Icon name="Link" size={16} />
+                      </div>
+                      <span className="text-sm">Привяжи свой Steam</span>
+                    </div>
+                    <div className="flex items-center gap-3 p-3 rounded-lg bg-card/50 hover:bg-card transition-colors cursor-pointer">
+                      <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center">
+                        <Icon name="Info" size={16} />
+                      </div>
+                      <span className="text-sm">Ответь на несколько вопросов</span>
+                    </div>
+                    <div className="flex items-center gap-3 p-3 rounded-lg bg-card/50 hover:bg-card transition-colors cursor-pointer">
+                      <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center">
+                        <Icon name="Play" size={16} />
+                      </div>
+                      <span className="text-sm">Начинай играть</span>
+                    </div>
+                  </div>
                 </div>
-                <h4 className="text-xl font-bold mb-2">Сообщество</h4>
-                <p className="text-muted-foreground">Активное комьюнити и поддержка 24/7</p>
-              </Card>
-              <Card className="glass-effect border-white/10 p-8 text-center group hover:border-primary/50 transition-all">
-                <div className="w-16 h-16 rounded-full gradient-blue mx-auto mb-4 flex items-center justify-center group-hover:scale-110 transition-transform">
-                  <Icon name="Award" size={32} />
-                </div>
-                <h4 className="text-xl font-bold mb-2">Достижения</h4>
-                <p className="text-muted-foreground">Система рангов и уникальных наград</p>
-              </Card>
+              </div>
+
+              <div className="space-y-4">
+                <h4 className="text-xl font-bold flex items-center gap-2">
+                  Ответь на несколько вопросов 
+                  <span className="text-sm text-muted-foreground">[1/2]</span>
+                </h4>
+                <p className="text-sm text-muted-foreground flex items-center gap-2">
+                  <Icon name="Lock" size={14} />
+                  Откроется после завершения предыдущих этапов.
+                </p>
+              </div>
             </div>
           </div>
         </section>
