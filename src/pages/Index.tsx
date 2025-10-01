@@ -233,7 +233,7 @@ const Index = () => {
               </h2>
               <div className="flex items-center justify-center gap-4 pt-4">
                 <Button size="lg" className="gradient-blue text-lg px-8 hover:scale-105 transition-transform" onClick={scrollToApplication}>
-                  <Icon name="FileText" size={20} className="mr-2" />
+                  <span className="mr-2 text-xl">⚡</span>
                   Подать заявку
                 </Button>
               </div>

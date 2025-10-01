@@ -183,11 +183,6 @@ const Forum = () => {
                 </div>
               </div>
             </div>
-            <div className="flex items-center gap-4">
-              <Button size="sm" className="gradient-blue" onClick={() => navigate('/')}>
-                ⚡ Начать играть
-              </Button>
-            </div>
           </div>
         </div>
       </nav>
