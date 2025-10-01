@@ -31,6 +31,9 @@ const Index = () => {
   const [steamOpen, setSteamOpen] = useState(false);
   const [questionnaireOpen, setQuestionnaireOpen] = useState(false);
   const [discordInviteOpen, setDiscordInviteOpen] = useState(false);
+  const [hoveredCommunity, setHoveredCommunity] = useState(false);
+  const [hoveredDepartments, setHoveredDepartments] = useState(false);
+  const [hoveredFiles, setHoveredFiles] = useState(false);
   
   const [authForm, setAuthForm] = useState({ email: '', password: '', username: '' });
   const [avatarFile, setAvatarFile] = useState<File | null>(null);
@@ -142,7 +145,16 @@ const Index = () => {
     if (user) {
       const updatedUser = { ...user, applicationApproved: true };
       saveUser(updatedUser);
-      alert('Поздравляем! Ваша заявка одобрена!');
+      sendApprovalEmail(user.email, user.username);
+      alert('Поздравляем! Ваша заявка одобрена! Проверьте вашу почту.');
+    }
+  };
+
+  const sendApprovalEmail = async (email: string, username: string) => {
+    try {
+      console.log(`Sending approval email to ${email} for user ${username}`);
+    } catch (error) {
+      console.error('Failed to send email:', error);
     }
   };
 
@@ -178,16 +190,101 @@ const Index = () => {
             </div>
             <div className="hidden md:block">
               <div className="flex items-center gap-6">
-                {['Главная', 'О проекте', 'Правила', 'Подать заявку'].map((item) => (
-                  <button
-                    key={item}
-                    onClick={() => item === 'Подать заявку' && scrollToApplication()}
-                    className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors relative group"
-                  >
-                    {item}
+                <button
+                  onClick={() => navigate('/forum')}
+                  className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors relative group"
+                >
+                  Форумы
+                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all group-hover:w-full" />
+                </button>
+                <div
+                  className="relative"
+                  onMouseEnter={() => setHoveredCommunity(true)}
+                  onMouseLeave={() => setHoveredCommunity(false)}
+                >
+                  <button className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors relative group">
+                    Сообщество
+                    <Icon name="ChevronDown" size={16} className="inline ml-1" />
                     <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all group-hover:w-full" />
                   </button>
-                ))}
+                  {hoveredCommunity && (
+                    <div className="absolute top-full left-0 mt-2 w-56 bg-card border border-white/10 rounded-lg shadow-lg overflow-hidden">
+                      <a href="#" className="block px-4 py-3 hover:bg-primary/10 transition-colors text-sm">
+                        База знаний
+                      </a>
+                      <a href="#" className="block px-4 py-3 hover:bg-primary/10 transition-colors text-sm">
+                        Часто задаваемые вопросы (FAQ)
+                      </a>
+                      <a href="#" className="block px-4 py-3 hover:bg-primary/10 transition-colors text-sm">
+                        Правила и требования
+                      </a>
+                      <div
+                        className="relative"
+                        onMouseEnter={() => setHoveredFiles(true)}
+                        onMouseLeave={() => setHoveredFiles(false)}
+                      >
+                        <a href="#" className="block px-4 py-3 hover:bg-primary/10 transition-colors text-sm flex items-center justify-between">
+                          Файлы
+                          <Icon name="ChevronRight" size={16} />
+                        </a>
+                        {hoveredFiles && (
+                          <div className="absolute left-full top-0 ml-1 w-56 bg-card border border-white/10 rounded-lg shadow-lg overflow-hidden">
+                            <a href="#" className="block px-4 py-3 hover:bg-primary/10 transition-colors text-sm">
+                              Графические модификации
+                            </a>
+                            <a href="#" className="block px-4 py-3 hover:bg-primary/10 transition-colors text-sm">
+                              Звуковые модификации
+                            </a>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  )}
+                </div>
+                <div
+                  className="relative"
+                  onMouseEnter={() => setHoveredDepartments(true)}
+                  onMouseLeave={() => setHoveredDepartments(false)}
+                >
+                  <button className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors relative group">
+                    Департаменты
+                    <Icon name="ChevronDown" size={16} className="inline ml-1" />
+                    <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all group-hover:w-full" />
+                  </button>
+                  {hoveredDepartments && (
+                    <div className="absolute top-full left-0 mt-2 w-72 bg-card border border-white/10 rounded-lg shadow-lg overflow-hidden">
+                      <a href="#" className="block px-4 py-3 hover:bg-primary/10 transition-colors text-sm">
+                        Дорожный Патруль Сан Андреас (SAHP)
+                      </a>
+                      <a href="#" className="block px-4 py-3 hover:bg-primary/10 transition-colors text-sm">
+                        Полицейский Департамент Лос-Сантоса (LSPD)
+                      </a>
+                      <a href="#" className="block px-4 py-3 hover:bg-primary/10 transition-colors text-sm">
+                        Офис Шерифа Блэйн Каунти (BCSO)
+                      </a>
+                      <a href="#" className="block px-4 py-3 hover:bg-primary/10 transition-colors text-sm">
+                        Пожарный Департамент Лос-Сантоса (LSCFD)
+                      </a>
+                      <a href="#" className="block px-4 py-3 hover:bg-primary/10 transition-colors text-sm">
+                        Диспетчерский Департамент (DD)
+                      </a>
+                      <a href="#" className="block px-4 py-3 hover:bg-primary/10 transition-colors text-sm">
+                        Гражданский Департамент (CIV)
+                      </a>
+                      <a href="#" className="block px-4 py-3 hover:bg-primary/10 transition-colors text-sm">
+                        Департамент Национальной Безопасности (DHS)
+                      </a>
+                    </div>
+                  )}
+                </div>
+                <a
+                  href="#"
+                  className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors relative group flex items-center gap-1"
+                >
+                  <Icon name="ShoppingBag" size={16} />
+                  Магазин
+                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all group-hover:w-full" />
+                </a>
               </div>
             </div>
             <div className="flex items-center gap-4">
