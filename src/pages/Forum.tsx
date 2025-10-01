@@ -23,6 +23,13 @@ const Forum = () => {
   const [hoveredCommunity, setHoveredCommunity] = useState(false);
   const [hoveredDepartments, setHoveredDepartments] = useState(false);
   const [hoveredFiles, setHoveredFiles] = useState(false);
+  const [hoveredProfile, setHoveredProfile] = useState(false);
+
+  const currentUser = {
+    username: 'Nikita C.',
+    rank: '#427',
+    avatar: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=100&h=100&fit=crop'
+  };
 
   const onlineUsers = [
     { id: 1, name: 'Nikita C.', rank: '#422' },
@@ -181,6 +188,52 @@ const Forum = () => {
                     </div>
                   )}
                 </div>
+              </div>
+            </div>
+            <div className="flex items-center gap-3">
+              <button className="relative p-2 hover:bg-white/10 rounded-lg transition-colors">
+                <Icon name="Bell" size={20} />
+                <span className="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full"></span>
+              </button>
+              <button className="relative p-2 hover:bg-white/10 rounded-lg transition-colors">
+                <Icon name="Mail" size={20} />
+              </button>
+              <div
+                className="relative"
+                onMouseEnter={() => setHoveredProfile(true)}
+                onMouseLeave={() => setHoveredProfile(false)}
+              >
+                <button className="flex items-center gap-2 p-1 hover:bg-white/10 rounded-lg transition-colors">
+                  <img src={currentUser.avatar} alt="Avatar" className="w-8 h-8 rounded-full" />
+                  <span className="text-sm font-medium">{currentUser.username}</span>
+                  <Icon name="ChevronDown" size={16} />
+                </button>
+                {hoveredProfile && (
+                  <div
+                    className="absolute top-full right-0 mt-2 w-56 bg-card border border-white/10 rounded-lg shadow-lg overflow-hidden"
+                    onMouseEnter={() => setHoveredProfile(true)}
+                    onMouseLeave={() => setHoveredProfile(false)}
+                  >
+                    <button
+                      onClick={() => navigate('/profile')}
+                      className="w-full text-left px-4 py-3 hover:bg-primary/10 transition-colors text-sm"
+                    >
+                      Профиль
+                    </button>
+                    <a href="#" className="block px-4 py-3 hover:bg-primary/10 transition-colors text-sm">
+                      Настройки
+                    </a>
+                    <a href="#" className="block px-4 py-3 hover:bg-primary/10 transition-colors text-sm">
+                      Отслеживаемый контент
+                    </a>
+                    <a href="#" className="block px-4 py-3 hover:bg-primary/10 transition-colors text-sm">
+                      Настройки профиля
+                    </a>
+                    <button className="w-full text-left px-4 py-3 hover:bg-primary/10 transition-colors text-sm border-t border-white/10">
+                      Выйти
+                    </button>
+                  </div>
+                )}
               </div>
             </div>
           </div>
