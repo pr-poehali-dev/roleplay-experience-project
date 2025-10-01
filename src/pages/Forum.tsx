@@ -49,14 +49,14 @@ const Forum = () => {
       <nav className="fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-md border-b border-white/10">
         <div className="container mx-auto">
           <div className="flex items-center justify-between h-20 px-4">
-            <div className="flex items-center gap-2">
-              <div className="w-10 h-10 rounded-lg gradient-blue flex items-center justify-center font-bold">
-                C5
+            <div className="flex items-center gap-6">
+              <div className="flex items-center gap-2">
+                <div className="w-10 h-10 rounded-lg gradient-blue flex items-center justify-center font-bold">
+                  C5
+                </div>
+                <span className="font-bold text-lg">code5.ru</span>
               </div>
-              <span className="font-bold text-lg">code5.ru</span>
-            </div>
-            <div className="hidden md:block">
-              <div className="flex items-center gap-6">
+              <div className="hidden md:flex items-center gap-6">
                 <button
                   onClick={() => navigate('/')}
                   className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors relative group"
@@ -151,20 +151,9 @@ const Forum = () => {
                     </div>
                   )}
                 </div>
-                <a
-                  href="#"
-                  className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors relative group flex items-center gap-1"
-                >
-                  <Icon name="ShoppingBag" size={16} />
-                  Магазин
-                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all group-hover:w-full" />
-                </a>
               </div>
             </div>
             <div className="flex items-center gap-4">
-              <Button variant="ghost" size="sm">
-                <Icon name="Search" size={18} />
-              </Button>
               <Button size="sm" className="gradient-blue" onClick={() => navigate('/')}>
                 ⚡ Начать играть
               </Button>

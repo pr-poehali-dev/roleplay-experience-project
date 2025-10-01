@@ -182,14 +182,14 @@ const Index = () => {
       <nav className="fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-md border-b border-white/10">
         <div className="container mx-auto">
           <div className="flex items-center justify-between h-20 px-4">
-            <div className="flex items-center gap-2">
-              <div className="w-10 h-10 rounded-lg gradient-blue flex items-center justify-center font-bold">
-                C5
+            <div className="flex items-center gap-6">
+              <div className="flex items-center gap-2">
+                <div className="w-10 h-10 rounded-lg gradient-blue flex items-center justify-center font-bold">
+                  C5
+                </div>
+                <span className="font-bold text-lg">code5.ru</span>
               </div>
-              <span className="font-bold text-lg">code5.ru</span>
-            </div>
-            <div className="hidden md:block">
-              <div className="flex items-center gap-6">
+              <div className="hidden md:block">
                 <button
                   onClick={() => navigate('/forum')}
                   className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors relative group flex items-center gap-2"
@@ -201,9 +201,6 @@ const Index = () => {
               </div>
             </div>
             <div className="flex items-center gap-4">
-              <Button variant="ghost" size="sm">
-                <Icon name="Search" size={18} />
-              </Button>
               {user ? (
                 <Button size="sm" className="gradient-blue" onClick={() => setProfileOpen(true)}>
                   <Icon name="User" size={18} className="mr-2" />
@@ -445,12 +442,19 @@ const Index = () => {
               <div className="space-y-4">
                 <h4 className="text-xl font-bold flex items-center gap-2">
                   Ответь на несколько вопросов
-                  <span className="text-sm text-muted-foreground">[1/2]</span>
+                  <span className="text-sm text-muted-foreground">{user?.applicationCompleted ? '[2/2]' : '[1/2]'}</span>
                 </h4>
-                <p className="text-sm text-muted-foreground flex items-center gap-2">
-                  <Icon name="Lock" size={14} />
-                  Откроется после завершения предыдущих этапов.
-                </p>
+                {!user?.applicationCompleted ? (
+                  <p className="text-sm text-muted-foreground flex items-center gap-2">
+                    <Icon name="Lock" size={14} />
+                    Откроется после завершения предыдущих этапов.
+                  </p>
+                ) : (
+                  <p className="text-sm text-muted-foreground flex items-center gap-2">
+                    <span className="text-lg">😊</span>
+                    Заявка рассматривается в течении 14 дней, мы вам сообщим как рассмотрим вашу заявку.
+                  </p>
+                )}
                 {user?.steamConnected && !user.applicationCompleted && (
                   <Button onClick={() => setQuestionnaireOpen(true)} className="w-full gradient-blue">
                     Начать заполнение анкеты
