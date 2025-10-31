@@ -218,13 +218,15 @@ const Index = () => {
 
       <main className="pt-20">
         <section className="relative py-16 px-4 overflow-hidden min-h-[500px]">
-          <iframe
-            className="absolute inset-0 w-full h-full object-cover opacity-30"
-            src="https://www.youtube.com/embed/EBP4GjKgXzk?autoplay=1&mute=1&loop=1&playlist=EBP4GjKgXzk&controls=0&showinfo=0&rel=0&modestbranding=1"
-            allow="autoplay; encrypted-media"
-            style={{ pointerEvents: 'none' }}
-            title="Background video"
-          />
+          <div className="absolute inset-0 w-full h-full">
+            <iframe
+              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[100vw] h-[56.25vw] min-h-[100vh] min-w-[177.77vh] opacity-30"
+              src="https://www.youtube.com/embed/EBP4GjKgXzk?autoplay=1&mute=1&loop=1&playlist=EBP4GjKgXzk&controls=0&showinfo=0&rel=0&modestbranding=1"
+              allow="autoplay; encrypted-media"
+              style={{ pointerEvents: 'none' }}
+              title="Background video"
+            />
+          </div>
           <div className="absolute inset-0 bg-black/60" />
           <div className="container mx-auto relative z-10">
             <div className="max-w-4xl mx-auto text-center space-y-6 animate-fade-in">
