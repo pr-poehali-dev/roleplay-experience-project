@@ -23,6 +23,7 @@ const Index = () => {
   const [activeSection, setActiveSection] = useState('main');
   const [currentWord, setCurrentWord] = useState(0);
   const applicationSectionRef = useRef<HTMLDivElement>(null);
+  const [navVisible, setNavVisible] = useState(true);
   
   const [user, setUser] = useState<User | null>(null);
   const [authOpen, setAuthOpen] = useState(false);
@@ -63,6 +64,22 @@ const Index = () => {
     if (savedUser) {
       setUser(JSON.parse(savedUser));
     }
+  }, []);
+
+  useEffect(() => {
+    let lastScrollY = window.scrollY;
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      if (currentScrollY > lastScrollY && currentScrollY > 100) {
+        setNavVisible(false);
+      } else {
+        setNavVisible(true);
+      }
+      lastScrollY = currentScrollY;
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   const saveUser = (userData: User) => {
@@ -179,7 +196,7 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background text-foreground">
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-md border-b border-white/10">
+      <nav className={`fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-md border-b border-white/10 transition-transform duration-300 ${navVisible ? 'translate-y-0' : '-translate-y-full'}`}>
         <div className="container mx-auto">
           <div className="flex items-center justify-between h-20 px-4">
             <div className="flex items-center gap-6">
