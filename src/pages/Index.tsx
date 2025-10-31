@@ -200,12 +200,11 @@ const Index = () => {
         <div className="container mx-auto">
           <div className="flex items-center justify-between h-20 px-4">
             <div className="flex items-center gap-6">
-              <div className="flex items-center gap-2">
-                <div className="w-10 h-10 rounded-lg gradient-blue flex items-center justify-center font-bold">
-                  C5
-                </div>
-                <span className="font-bold text-lg">code5.ru</span>
-              </div>
+              <img 
+                src="https://cdn.poehali.dev/files/70f57a42-c6c4-48d6-bcae-54c12a8c8883.png" 
+                alt="code5.ru" 
+                className="h-10"
+              />
               <div className="hidden md:block">
                 <button
                   onClick={() => navigate('/forum')}
