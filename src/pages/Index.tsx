@@ -203,7 +203,7 @@ const Index = () => {
               <img 
                 src="https://cdn.poehali.dev/files/70f57a42-c6c4-48d6-bcae-54c12a8c8883.png" 
                 alt="code5.ru" 
-                className="h-50"
+                className="h-16"
               />
               <div className="hidden md:block">
                 <button
